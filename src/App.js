@@ -58,11 +58,28 @@ class CurrentChord extends Component {
 
   render() {
     return(
-      <div className="row">
-        <div className="col-sm-4 col-sm-push-4 text-center">
-          <button class="btn btn-primary btn-lrg">{this.convertNumToRoman(this.state.currentChordValue)}</button>
-        </div>
-      </div>
+
+      <button class="btn btn-primary btn-lrg"><h1>{this.convertNumToRoman(this.state.currentChordValue)}</h1></button>
+    )
+  }
+
+}
+
+class SuggestedChords extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      suggestedChords: [2,3]
+    }
+
+  }
+
+  render() {
+    return(<span>
+      {this.state.suggestedChords.map((chord,i) =>
+        <button class="btn btn-default btn-lrg"><h1>{this.state.suggestedChords[i]}</h1></button>
+      )}
+      </span>
     )
   }
 
@@ -72,7 +89,18 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <CurrentChord />
+        <div className="row">
+          <div className="col-sm-4 col-sm-push-4 text-center">
+            <p>The current chord is</p>
+            <CurrentChord />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-4 col-sm-push-4 text-center">
+            <p>You might want to consider using one of these chords next</p>
+            <SuggestedChords />
+          </div>
+        </div>
       </div>
     );
   }
