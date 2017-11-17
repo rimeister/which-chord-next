@@ -68,6 +68,7 @@ class CurrentChord extends Component {
 }
 
 class SuggestedChords extends Component {
+
   constructor(props){
     super(props);
     this.state = {
@@ -78,7 +79,9 @@ class SuggestedChords extends Component {
 
   selectThisChord(e,chord) {
     e.preventDefault();
-    console.log(typeof chord);
+    this.setState({
+      suggestedChords: chordMap[chord]
+    });
   }
 
   render() {
