@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 
 var chordMap = {
-  1: [1,3,5],
-  2: [3,5],
-  3: [1,7],
-  4: [3,4],
-  5: [2,3],
-  6: [3,6],
-  7: [4,7]
+  1: ['1','3','5'],
+  2: ['3','5'],
+  3: ['1','7'],
+  4: ['3','4'],
+  5: ['2','3'],
+  6: ['3','6'],
+  7: ['4','7']
 }
 
 function convertNumToRoman(num) {
@@ -71,14 +71,14 @@ class SuggestedChords extends Component {
   constructor(props){
     super(props);
     this.state = {
-      suggestedChords: [2,3]
+      suggestedChords: ['2','3']
     }
 
   }
 
   selectThisChord(e,chord) {
     e.preventDefault();
-    console.log(chord);
+    console.log(typeof chord);
   }
 
   render() {
