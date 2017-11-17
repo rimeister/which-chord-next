@@ -11,6 +11,42 @@ var chordMap = {
   7: [4,7]
 }
 
+function convertNumToRoman(num) {
+
+  var romanNum;
+  num = Number(num);
+
+  switch(num) {
+    case 1:
+      romanNum = 'I';
+      break;
+    case 2:
+      romanNum = 'ii';
+      break;
+    case 3:
+      romanNum = 'iii';
+      break;
+    case 4:
+      romanNum = 'IV';
+      break;
+    case 5:
+      romanNum = 'V';
+      break;
+    case 6:
+      romanNum = 'vi';
+      break;
+    case 7:
+      romanNum = 'vii°';
+      break;
+    default:
+      romanNum = '?';
+      break;
+  }
+
+  return romanNum;
+
+}
+
 class CurrentChord extends Component {
 
   constructor(props) {
@@ -18,48 +54,14 @@ class CurrentChord extends Component {
     this.state = {
       currentChordValue: '5'
     }
+
+    this.convertNumToRoman = convertNumToRoman.bind(this)
   }
-
-  convertNumToRoman(num) {
-
-    var romanNum;
-
-    switch(num) {
-      default:
-        romanNum = this.state.currentChordValue;
-        break;
-      case '1':
-        romanNum = 'I';
-        break;
-      case '2':
-        romanNum = 'ii';
-        break;
-      case '3':
-        romanNum = 'iii';
-        break;
-      case '4':
-        romanNum = 'IV';
-        break;
-      case '5':
-        romanNum = 'V';
-        break;
-      case '6':
-        romanNum = 'vi';
-        break;
-      case '7':
-        romanNum = 'vii°';
-        break;
-    }
-
-    return romanNum;
-
-  }
-
 
   render() {
     return(
 
-      <button class="btn btn-primary btn-lrg"><h1>{this.convertNumToRoman(this.state.currentChordValue)}</h1></button>
+      <button className="btn btn-primary btn-lrg"><h1>{convertNumToRoman(this.state.currentChordValue)}</h1></button>
     )
   }
 
@@ -74,12 +76,13 @@ class SuggestedChords extends Component {
 
   }
 
+
+
   render() {
-    return(<span>
-      {this.state.suggestedChords.map((chord,i) =>
-        <button class="btn btn-default btn-lrg"><h1>{this.state.suggestedChords[i]}</h1></button>
-      )}
-      </span>
+    return(
+      this.state.suggestedChords.map((chord,i) =>
+        <button className="btn btn-default btn-lrg" key={i}><h1>{convertNumToRoman(this.state.suggestedChords[i])}</h1></button>
+      )
     )
   }
 
