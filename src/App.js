@@ -76,12 +76,15 @@ class SuggestedChords extends Component {
 
   }
 
-
+  selectThisChord(e,chord) {
+    e.preventDefault();
+    console.log(chord);
+  }
 
   render() {
     return(
       this.state.suggestedChords.map((chord,i) =>
-        <button className="btn btn-default btn-lrg" key={i}><h1>{convertNumToRoman(this.state.suggestedChords[i])}</h1></button>
+        <button className="btn btn-default btn-lrg" key={i} onClick={(e) => this.selectThisChord(e, chord)}><h1>{convertNumToRoman(this.state.suggestedChords[i])}</h1></button>
       )
     )
   }
