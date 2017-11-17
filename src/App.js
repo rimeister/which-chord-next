@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+var chordMap = {
+  1: [1,3,5],
+  2: [3,5],
+  3: [1,7],
+  4: [3,4],
+  5: [2,3],
+  6: [3,6],
+  7: [4,7]
+}
+
 class App extends Component {
   render() {
     return (
