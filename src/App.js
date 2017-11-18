@@ -63,7 +63,7 @@ class SuggestedChords extends Component {
   render() {
     return(
       this.props.suggestedChords.map((chord,i) =>
-        <button className="btn btn-default btn-lrg" key={i}><h1>{convertNumToRoman(this.props.suggestedChords[i])}</h1></button>
+        <button className="btn btn-default btn-lrg" key={i} onClick={this.props.selectThisChord}><h1>{convertNumToRoman(this.props.suggestedChords[i])}</h1></button>
       )
     )
   }
@@ -81,11 +81,12 @@ class App extends Component {
     }
 
     this.convertNumToRoman = convertNumToRoman.bind(this);
-    // this.selectThisChord = selectThisChord.bind(this);
+    //this.selectThisChord = selectThisChord.bind(this);
 
   }
 
-  selectThisChord() {
+  selectThisChord(e) {
+    e.preventDefault();
     console.log(123);
   }
 
@@ -108,7 +109,7 @@ class App extends Component {
         <div className="row">
           <div className="col-sm-4 col-sm-push-4 text-center">
             <p>You might want to consider using one of these chords next</p>
-            <SuggestedChords suggestedChords={this.state.suggestedChords} />
+            <SuggestedChords suggestedChords={this.state.suggestedChords} selectThisChord={this.selectThisChord} value={this.state.currentChordValue}/>
           </div>
         </div>
       </div>
