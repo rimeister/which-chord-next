@@ -63,7 +63,7 @@ class SuggestedChords extends Component {
   render() {
     return(
       this.props.suggestedChords.map((chord,i) =>
-        <button className="btn btn-default btn-lrg" key={i} onClick={this.props.selectThisChord}><h1>{convertNumToRoman(this.props.suggestedChords[i])}</h1></button>
+        <button className="btn btn-default btn-lrg" key={i} onClick={(e) => this.props.selectThisChord(e, chord)}><h1>{convertNumToRoman(this.props.suggestedChords[i])}</h1></button>
       )
     )
   }
@@ -81,21 +81,17 @@ class App extends Component {
     }
 
     this.convertNumToRoman = convertNumToRoman.bind(this);
-    //this.selectThisChord = selectThisChord.bind(this);
+    this.selectThisChord = this.selectThisChord.bind(this);
 
   }
 
-  selectThisChord(e) {
+  selectThisChord(e,chord) {
     e.preventDefault();
-    console.log(123);
+    this.setState({
+      currentChordValue: chord,
+      suggestedChords: chordMap[chord]
+    });
   }
-
-  // selectThisChord(e,chord) {
-  //   e.preventDefault();
-  //   this.setState({
-  //     suggestedChords: chordMap[chord]
-  //   });
-  // }
 
   render() {
     return (
