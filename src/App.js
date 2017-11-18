@@ -49,19 +49,10 @@ function convertNumToRoman(num) {
 
 class CurrentChord extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentChordValue: '5'
-    }
-
-    this.convertNumToRoman = convertNumToRoman.bind(this)
-  }
-
   render() {
     return(
 
-      <button className="btn btn-primary btn-lrg"><h1>{convertNumToRoman(this.state.currentChordValue)}</h1></button>
+      <button className="btn btn-primary btn-lrg"><h1>{convertNumToRoman(this.props.currentChordValue)}</h1></button>
     )
   }
 
@@ -69,25 +60,10 @@ class CurrentChord extends Component {
 
 class SuggestedChords extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      suggestedChords: ['2','3']
-    }
-
-  }
-
-  selectThisChord(e,chord) {
-    e.preventDefault();
-    this.setState({
-      suggestedChords: chordMap[chord]
-    });
-  }
-
   render() {
     return(
-      this.state.suggestedChords.map((chord,i) =>
-        <button className="btn btn-default btn-lrg" key={i} onClick={(e) => this.selectThisChord(e, chord)}><h1>{convertNumToRoman(this.state.suggestedChords[i])}</h1></button>
+      this.props.suggestedChords.map((chord,i) =>
+        <button className="btn btn-default btn-lrg" key={i}><h1>{convertNumToRoman(this.props.suggestedChords[i])}</h1></button>
       )
     )
   }
@@ -95,19 +71,44 @@ class SuggestedChords extends Component {
 }
 
 class App extends Component {
+
+  constructor(props){
+
+    super(props);
+    this.state = {
+      currentChordValue: '5',
+      suggestedChords: ['2','3']
+    }
+
+    this.convertNumToRoman = convertNumToRoman.bind(this);
+    // this.selectThisChord = selectThisChord.bind(this);
+
+  }
+
+  selectThisChord() {
+    console.log(123);
+  }
+
+  // selectThisChord(e,chord) {
+  //   e.preventDefault();
+  //   this.setState({
+  //     suggestedChords: chordMap[chord]
+  //   });
+  // }
+
   render() {
     return (
       <div className="container">
         <div className="row">
           <div className="col-sm-4 col-sm-push-4 text-center">
             <p>The current chord is</p>
-            <CurrentChord />
+            <CurrentChord currentChordValue={this.state.currentChordValue} />
           </div>
         </div>
         <div className="row">
           <div className="col-sm-4 col-sm-push-4 text-center">
             <p>You might want to consider using one of these chords next</p>
-            <SuggestedChords />
+            <SuggestedChords suggestedChords={this.state.suggestedChords} />
           </div>
         </div>
       </div>
